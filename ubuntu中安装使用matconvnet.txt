@@ -1,0 +1,28 @@
+1.安装libjpeg
+	sudo apt-get install libjpeg-dev
+2.下载MatConvNet，并解压
+3.修改MatConvNet工具包下的Makefile
+	ENABLE_GPU ?= y
+	ARCH ?= glnxa64
+	CUDAROOT ?= /usr/local/cuda-7.5
+	MATLABROOT ?= /usr/local/MATLAB/R2014a
+
+4.打开matlab，进入MatConvnet下的matlab文件夹，编译
+	cpu版：vl_compilenn  
+	gpu版：vl_compilenn('enableGpu', true, ...  
+               'cudaMethod', 'nvcc', ...  
+               'cudaRoot', '/data01/qiuriming.inp/cuda-7.5') 
+
+	不兼容的版本需要用cudnn：
+		vl_compilenn('enableGpu', true, ...  
+               'cudaMethod', 'nvcc', ...  
+               'cudaRoot', '/data01/qiuriming.inp/cuda-7.0', ...  
+               'enableCudnn', true, ...  
+               'cudnnRoot', '/data01/qiuriming.inp/cudnn-7.0') 
+
+5.测试是否安装成功
+	cpu：vl_testnn  
+	gpu：vl_testnn('gpu', true)
+
+
+LD_LIBRARY_PATH=/data01/qiuriming.inp/cuda-7.5/lib64 matlab

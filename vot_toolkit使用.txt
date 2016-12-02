@@ -1,0 +1,9 @@
+1.toolkit_path
+2.mkdir vot-workspace
+cd vot-workspace
+3.workspace_create   # 将下载的数据集解压，整个文件夹命名为sequences,放在vot-workspace文件夹下
+4.编辑track.m文件
+5.run_test  # 测试
+
+6.run_experiment
+
